@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Wei !</title>
+
+<link rel="stylesheet" type="text/css" href="css/csshake.min.css">
+<link type="text/css" href="css/csshake.min.css">
+    
+<link href="css/transition.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
+<script type="text/javascript" charset="utf-8">
+
+        // Wait for Cordova to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+            playAudio("http://s80.youmaker.com/other/2014/11-5/mp3261361432b1edce0b26134243be9f6ebcd2001fec080.mp3");
+        }//一進去就馬上有音樂
+
+        // Audio player
+        //
+        var my_media = null;
+        var mediaTimer = null;
+
+        // Play audio
+        //
+        function playAudio(src) {
+            // Create Media object from src
+            my_media = new Media(src, onSuccess, onError);
+
+            // Play audio
+            my_media.play();
+
+            // Update my_media position every second
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    // get my_media position
+                    my_media.getCurrentPosition(
+                        // success callback
+                        function(position) {
+                            if (position > -1) {
+                                setAudioPosition((position) + " sec");
+                            }
+                        },
+                        // error callback
+                        function(e) {
+                            console.log("Error getting pos=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+        }
+
+        // Pause audio
+        // 
+        function pauseAudio() {
+            if (my_media) {
+                my_media.pause();
+            }
+        }
+
+        // Stop audio
+        // 
+        function stopAudio() {
+            if (my_media) {
+                my_media.stop();
+            }
+            clearInterval(mediaTimer);
+            mediaTimer = null;
+        }
+
+        // onSuccess Callback
+        //
+        function onSuccess() {
+            console.log("playAudio():Audio Success");
+        }
+
+        // onError Callback 
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' + 
+                  'message: ' + error.message + '\n');
+        }
+
+        // Set audio position
+        // 
+        function setAudioPosition(position) {
+            document.getElementById('audio_position').innerHTML = position;
+        }
+
+</script>
+
+<style type="text/css">
+body {
+	background-image: url();
+	background-repeat: repeat;
+	
+}
+html, body , .outer, .inner {
+    height:100%;
+    width:100%;
+    margin:0;
+} 
+</style>
+</head>
+
+<body style="background-color:#EEEDCD;">
+
+<script type="text/javascript">
+function AlertIt(){
+	//亂數
+	var myrandom = Math.round(Math.random()*2)
+	//一些白痴的話，用矩陣 Array
+	var messages = new Array()
+	messages[0] = "my blog about beauty"
+	messages[1] = "my youtube "
+	messages[2] = "my facebook "
+	//連結清單
+	var links = new Array()
+	links[0] = "http://a2929cl4.pixnet.net/blog"
+	links[1] = "https://www.youtube.com/user/a2929cl4/videos"
+	links[2] = "https://www.facebook.com/weihao1206"
+	
+	//呼叫確認視窗
+	var answer = confirm(messages[myrandom])
+	//重點來了，如果點「是」，就連去該變數所指的網站
+	if (answer){
+		window.location = links[myrandom]
+	} 
+}
+</script>
+
+<table width="100%" height ="100%" border="6" cellspacing="6" cellpadding="15">
+  <tr>
+    <td align="center" valign="middle" bgcolor="#00CC99">
+        <div style="background-color:#CEF6CE; padding:10px; margin-bottom:5px;">
+        <p></p>
+        <font face="Optima" size="6" color="#A9A9F5"><strong>Wei! What' going on?</strong></font>
+      <p></p></div>
+      <p>
+          <link type="text/css" href="csshake.css">
+<div class="shake shake-slow"></div>
+            <a href="javascript:AlertIt();"><img src="images/cosm.png" width="70%" height="auto" /></a>
+            </link>
+            </p>
+		<a href="javascript:AlertIt();">
+		<p><font face="Microsoft Jhenghei" size="5" color="#F2EFFB">Press Me</font></p>
+		</a>
+        <hr size="6" align="center" noshade width="90%" color="#E0C7A3">
+        
+        
+    
+
+	</td>
+  </tr>
+</table>
+
+
+</body>
+</html>
